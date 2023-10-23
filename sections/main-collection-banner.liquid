@@ -1,0 +1,62 @@
+{% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+{{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  @media screen and (max-width: 749px) {
+    .collection-hero--with-image .collection-hero__inner {
+      padding-bottom: calc({{ settings.media_shadow_vertical_offset | at_least: 0 }}px + 2rem);
+    }
+  }
+{%- endstyle -%}
+
+<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
+  <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    <div class="collection-hero__border-wrapper">
+      <div class="collection-hero__text-wrapper">
+        <h1 class="collection-hero__title">
+          <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
+          {{ section.settings.title }}
+        </h1>
+      </div>
+      <ul class="collection-hero__collection-list">
+        {% for collection in collections %}
+          {% assign is_active = false %}
+          {% if request.path contains collection.handle %}
+            {% assign is_active = true %}
+          {% endif %}
+          <li
+            class="collection-hero__collection-item{% if is_active %} active{% endif %}"
+            data-url-name="{{ collection.handle }}"
+          >
+            {% if is_active %}
+              <p>{{ collection.title }}</p>
+            {% else %}
+              <a href="{{ '/collections/' | append: collection.handle }}">{{ collection.title }}</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-collection-banner.name",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Banner title",
+      "default": "petWALK Produkte:"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "background-1"
+    }
+  ]
+}
+{% endschema %}

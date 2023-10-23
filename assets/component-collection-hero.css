@@ -1,0 +1,199 @@
+.collection-hero {
+  padding: 50px 0 0 0;
+}
+
+.collection-hero * {
+  font-family: 'Montserrat', sans-serif;
+  color: #707070;
+  list-style: none;
+  user-select: none;
+  text-decoration: none;
+}
+
+.collection-hero__inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.collection-hero--with-image .collection-hero__inner {
+  margin-bottom: 0;
+  padding-bottom: 2rem;
+}
+
+.collection-hero__border-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #777777;
+  padding: 0;
+}
+
+.collection-hero__collection-list {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+}
+
+.collection-hero__text-wrapper {
+  width: fit-content;
+  margin-right: 15px;
+}
+
+.collection-hero__collection-list * {
+  margin: 0;
+}
+
+.collection-hero__collection-item {
+  background-color: #f7f7f7;
+  cursor: pointer;
+  outline: 1px solid transparent;
+  transition: all 0.3s ease-out;
+}
+
+.collection-hero__collection-item:not(.active):hover {
+  outline: 1px solid rgb(var(--color-accent));
+}
+
+.collection-hero__collection-item a,
+.collection-hero__collection-item p {
+  display: block;
+  padding: 5px 15px;
+  white-space: nowrap;
+}
+
+.collection-hero__collection-item.active {
+  background-color: rgb(var(--color-accent));
+  cursor: default;
+}
+
+.collection-hero__collection-item.active a,
+.collection-hero__collection-item.active p {
+  color: white;
+}
+
+@media screen and (max-width: 1023px) {
+  .collection-hero__border-wrapper {
+    flex-direction: column;
+    row-gap: 10px;
+    justify-content: left;
+    align-items: start;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .collection-hero__border-wrapper {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    border-bottom: none;
+  }
+  .collection-hero__collection-list::-webkit-scrollbar {
+    width: 100%;
+    height: 3px;
+  }
+  .collection-hero__collection-list::-webkit-scrollbar-thumb {
+    /*background-color: rgb(var(--color-accent));*/
+    visibility: hidden;
+  }
+  .collection-hero__collection-list {
+    width: 100%;
+    overflow-x: scroll;
+    padding-bottom: 15px;
+  }
+  .collection-hero__inner {
+    border-bottom: 1px solid #777777;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .collection-hero__border-wrapper {
+    padding-bottom: 30px;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .collection-hero.collection-hero--with-image {
+    padding: calc(4rem + var(--page-width-margin)) 0 calc(4rem + var(--page-width-margin));
+    overflow: hidden;
+  }
+
+  .collection-hero--with-image .collection-hero__inner {
+    padding-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .collection-hero__inner {
+    align-items: center;
+    flex-direction: row;
+    padding-bottom: 0;
+  }
+}
+
+.collection-hero__title {
+  width: fit-content;
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.collection-hero__title + .collection-hero__description {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+  line-height: calc(1 + 0.5 / var(--font-body-scale));
+}
+
+@media screen and (min-width: 750px) {
+  .collection-hero__title + .collection-hero__description {
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .collection-hero__description {
+    max-width: 66.67%;
+  }
+
+  .collection-hero--with-image .collection-hero__description {
+    max-width: 100%;
+  }
+}
+
+.collection-hero--with-image .collection-hero__title {
+  margin: 0;
+}
+
+.collection-hero--with-image .collection-hero__text-wrapper {
+  padding: 5rem 0 4rem;
+}
+
+.collection-hero__image-container {
+  border: var(--media-border-width) solid rgba(var(--color-foreground), var(--media-border-opacity));
+  border-radius: var(--media-radius);
+  box-shadow: var(--media-shadow-horizontal-offset) var(--media-shadow-vertical-offset) var(--media-shadow-blur-radius)
+    rgba(var(--color-shadow), var(--media-shadow-opacity));
+}
+
+@media screen and (max-width: 749px) {
+  .collection-hero__image-container {
+    height: 20rem;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .collection-hero--with-image .collection-hero__text-wrapper {
+    padding: 4rem 2rem 4rem 0;
+    flex-basis: 50%;
+  }
+
+  .collection-hero__image-container {
+    align-self: stretch;
+    flex: 1 0 50%;
+    margin-left: 3rem;
+    min-height: 20rem;
+  }
+}
