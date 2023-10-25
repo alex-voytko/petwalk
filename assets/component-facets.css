@@ -191,6 +191,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  overflow: scroll;
 }
 
 .facets__heading {
@@ -259,6 +260,79 @@
 .facets__summary:hover span {
   color: #707070;
   font-weight: 600;
+}
+
+.facets__disclosure + .facets__list {
+  display: none;
+}
+
+.facets__wrapper {
+  flex-wrap: nowrap;
+  min-width: 100%;
+}
+
+.facets__display, .facets__list {
+  display: none;
+}
+.facets__disclosure[open] + .facets__list {
+  display: flex;
+  width: auto;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: nowrap;
+  margin-bottom: 1.5rem;
+  align-items: center;
+  z-index: 10;
+  padding: 0;
+}
+.facets__disclosure[open] + .facets__list .facets__item {
+  border: 1px solid #777777;
+  border-radius: 10px;
+  color: #707070;
+}
+.facets__disclosure[open] + .facets__list .facets__item.checked {
+  background-color: #f7f7f7;
+  border: 1px solid rgb(var(--color-accent));
+  font-weight: 600;
+}
+.facets__disclosure[open] + .facets__list .facets__item .facet-checkbox {
+  font-size: 16px;
+  line-height: 24px;
+  color: #707070;
+  padding: 3px 10px;
+  transition: all 0.3s ease-out;
+}
+.facets__disclosure[open] + .facets__list .facets__item .facet-checkbox svg {
+  display: none;
+}
+.facets__disclosure[open] + .facets__list * {
+  white-space: nowrap;
+}
+.facets__disclosure[open] > .facets__display {
+  border-width: 0;
+  width: fit-content;
+  display: none;
+  top: 0;
+  right: 0;
+  max-height: none;
+  box-shadow: none;
+  transform: translateX(0);
+}
+.facets__disclosure[open] .facets__summary {
+  width: fit-content;
+}
+.facets__disclosure[open]  .facets__display .facets-wrap {
+  width: fit-content;
+}
+.facets__disclosure[open] .facets__display .facets__header {
+  display: none;
+}
+.facets__disclosure[open] .facets__display .facets__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  padding: 0;
 }
 
 .facets__disclosure-vertical[open] .facets__display-vertical {

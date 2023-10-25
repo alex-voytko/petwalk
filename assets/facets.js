@@ -114,7 +114,11 @@ class FacetFiltersForm extends HTMLElement {
     const countsToRender = Array.from(facetDetailsElements).find(matchesIndex);
 
     facetsToRender.forEach((element) => {
-      document.querySelector(`.js-filter[data-index="${element.dataset.index}"]`).innerHTML = element.innerHTML;
+      const detailsRef = document.querySelector(`.js-filter[data-index="${element.dataset.index}"]`);
+      if (element.classList.contains('facets__disclosure')) {
+        detailsRef.nextElementSibling.innerHTML = element.nextElementSibling.innerHTML;
+      };
+      detailsRef.innerHTML = element.innerHTML;
     });
 
     FacetFiltersForm.renderActiveFacets(parsedHTML);
@@ -176,6 +180,9 @@ class FacetFiltersForm extends HTMLElement {
 
   createSearchParams(form) {
     const formData = new FormData(form);
+    for (const pair of formData.entries()) {
+      // console.log(`${pair[0]}, ${pair[1]}`);
+    }
     return new URLSearchParams(formData).toString();
   }
 
